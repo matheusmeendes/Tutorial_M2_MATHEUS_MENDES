@@ -4,7 +4,10 @@ const port = 3000
 const app = express();
 app.use(express.json());
 
-const dbPath = 'C:\Users\Inteli\Documents\GitHub\Tutorial_M2_MATHEUS_MENDES\SEMANA_02\02_AUT_EST_ENTREGA\curriculo.db';
+//const dbPath = 'C:\Users\Inteli\Documents\GitHub\Tutorial_M2_MATHEUS_MENDES\SEMANA_02\02_AUT_EST_ENTREGA\curriculo.db';
+
+const path = require('path');
+const dbPath = path.join(__dirname, 'curriculo.db');
 
 const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
