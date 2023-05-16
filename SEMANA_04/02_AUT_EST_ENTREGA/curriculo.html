@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SQLite3 and Express</title>
+</head>
+<body>
+  <h1>Coleta de Dados</h1>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Event listener for form submission
+      $('form').on('submit', function(event) {
+        event.preventDefault();
+        var form = $(this);
+        var formData = form.serialize();
+
+        // Send POST request to create a new record
+        $.ajax({
+          type: 'POST',
+          url: '/pessoal',
+          data: formData,
+          success: function(response) {
+            alert('New record added: ' + response);
+            form.trigger('reset');
+          },
+          error: function(error) {
+            alert('Error: ' + error.responseJSON.error);
+          }
+        });
+      });
+    });
+  </script>
+  <form>
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" id="nome">
+    <br>
+    <label for="cargo">Cargo:</label>
+    <input type="text" name="cargo" id="cargo">
+    <br>
+    <label for="formacao_id">Formação ID:</label>
+    <input type="text" name="formacao_id" id="formacao_id">
+    <br>
+    <button type="submit">Adicionar Registro</button>
+  </form>
+</body>
+</html>
